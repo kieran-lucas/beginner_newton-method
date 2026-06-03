@@ -1,14 +1,31 @@
 # Newton's Method Explorer
 
-A beginner-friendly desktop app for visualizing Newton's method step by step: the initial guess, tangent line, next approximation, convergence, and failure cases.
+Newton's Method Explorer is a small desktop learning app that visualizes Newton's method one iteration at a time. It is designed for beginners who want to understand what the tangent line is doing, why each approximation changes, and how the method eventually converges or fails.
 
-## Screenshot
+## Preview
 
-![Newton's Method Explorer showing f(x) = x**2 - 2, a tangent-line graph, iteration table, and step-by-step explanation](assets/screenshot.png)
+![Newton's Method Explorer app preview](./assets/screenshot.png)
 
-## What This App Teaches
+## Features
 
-Newton's method finds a root of `f(x)` by drawing the tangent line at the current approximation and following that line to the x-axis. This app shows why each approximation moved where it did, not just the final answer.
+- Type a function such as `x**2 - 2`, `cos(x) - x`, or `x**3 - x - 2`.
+- Choose an initial guess `x0`.
+- See each Newton iteration on an interactive graph.
+- Follow the tangent line from the current point to the x-axis.
+- Inspect the iteration table with `x_n`, `f(x_n)`, `f'(x_n)`, `x_(n+1)`, and step size.
+- Read a plain-English explanation for the selected step.
+- Try built-in presets for common convergence and failure cases.
+- Adjust tolerance, maximum iterations, and graph range from the advanced controls.
+
+## Why This Exists
+
+Newton's method is often taught as a formula:
+
+```text
+x_(n+1) = x_n - f(x_n) / f'(x_n)
+```
+
+That formula is useful, but it can feel abstract. This app connects the formula to the geometry: the current point, the derivative slope, the tangent line, and the next approximation.
 
 ## Requirements
 
@@ -18,86 +35,96 @@ Newton's method finds a root of `f(x)` by drawing the tangent line at the curren
 ## Installation
 
 ```bash
-# 1. Clone the repository
 git clone https://github.com/kieran-lucas/beginner_newton-method.git
 cd beginner_newton-method
 
-# 2. Create and activate a virtual environment
 python -m venv .venv
+```
 
+Activate the virtual environment:
+
+```bash
 # Windows
 .venv\Scripts\activate
 
 # macOS / Linux
 source .venv/bin/activate
+```
 
-# 3. Install dependencies
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
 ```
 
-## Running The App
+## Run
 
 ```bash
 python main.py
 ```
 
-The window requires a minimum size of `1020 x 680` px.
+The app opens a desktop window. The minimum supported window size is `1020 x 680`.
 
-## Developer Setup
+## Run Tests
+
+Install development dependencies:
 
 ```bash
 pip install -r requirements-dev.txt
 ```
 
-## Running Tests
+Run the test suite:
 
 ```bash
 pytest tests/
 ```
 
-## Build / Package
+## Tech Stack
 
-Packaging is not configured yet. The app runs directly from source with `python main.py`.
+- PyQt6 for the desktop interface
+- Matplotlib for the graph canvas
+- SymPy for expression parsing and derivatives
+- pytest for automated tests
 
 ## Project Structure
 
 ```text
 beginner_newton-method/
-|-- main.py                     entry point
+|-- main.py
 |-- app/
-|   |-- style.py                color tokens, font sizes, Qt stylesheet
-|   |-- newton.py               numerical core
-|   |-- expression.py           SymPy expression parser
-|   |-- plot.py                 Matplotlib canvas widget
-|   |-- window.py               MainWindow, assembles all panels
-|   |-- presets.py              built-in example functions
+|   |-- expression.py
+|   |-- explanation.py
+|   |-- newton.py
+|   |-- plot.py
+|   |-- presets.py
+|   |-- style.py
+|   |-- window.py
 |   `-- panels/
-|       |-- input_panel.py      function input, x0, run/reset, step navigator
-|       |-- table_panel.py      per-iteration data table
-|       `-- status_panel.py     plain-English explanation and result badge
+|       |-- input_panel.py
+|       |-- status_panel.py
+|       `-- table_panel.py
 |-- assets/
 |   `-- screenshot.png
+|-- docs/
+|   `-- ux-spec.md
 |-- tests/
 |   |-- test_expression.py
 |   `-- test_newton.py
-|-- docs/
-|   `-- ux-spec.md
-|-- ROADMAP.md
 |-- requirements.txt
-`-- requirements-dev.txt
+|-- requirements-dev.txt
+`-- ROADMAP.md
 ```
 
-## Development Status
+## Status
 
-| Stage | Description | Status |
-| --- | --- | --- |
-| 1 | Project scaffold | Done |
-| 2 | Newton numerical core | Done |
-| 3 | Expression parsing with SymPy | Done |
-| 4 | Graph and tangent visualization | Done |
-| 5 | Iteration table and explanation panel | Done |
-| 6 | Convergence and failure diagnostics | Done |
-| 7 | Presets and examples | Done |
-| 8 | Export and polish | Not started |
-| 9 | README and portfolio presentation | Done |
-| 10 | Testing and validation | Not started |
+The core learning workflow is implemented:
+
+- numerical Newton iteration
+- expression parsing
+- graph and tangent visualization
+- step table
+- explanation panel
+- convergence and failure diagnostics
+- preset examples
+
+Packaging and export features are not configured yet. For now, the app runs directly from source.
