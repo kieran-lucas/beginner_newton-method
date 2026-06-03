@@ -2,7 +2,7 @@
 
 A beginner-friendly desktop app for visualising Newton's method step by step: initial guess, tangent line, next approximation, convergence, and failure cases.
 
-![Newton's Method Explorer — step 1 of 5 for f(x) = x² − 2, showing the tangent line and iteration table](assets/screenshot.png)
+![Newton's Method Explorer — Lexend UI, step 1 of 5 for f(x) = x² − 2 with tangent line, iteration table, and step-by-step explanation](assets/screenshot.png)
 
 ---
 

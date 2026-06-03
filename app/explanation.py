@@ -48,8 +48,9 @@ def build_step_html(
 
     header = (
         f"<p style='color:{style.COLOR_TEXT_SECONDARY}; "
+        f"font-family:{style.FONT_UI},sans-serif; "
         f"font-size:{style.SIZE_SMALL}pt; font-weight:700; "
-        f"letter-spacing:0.5px;'>STEP {idx} OF {total - 1}</p>"
+        f"letter-spacing:1px; margin-bottom:6px;'>STEP {idx} OF {total - 1}</p>"
     )
 
     # ---- Failure states ------------------------------------------------
@@ -126,9 +127,8 @@ def build_step_html(
 
 
 def _normal_body(step: IterationRecord, idx: int) -> str:
-    """Body HTML for a step that has a valid x_next."""
     sec_color = style.COLOR_TEXT_SECONDARY
-    code_bg   = "#F5F5F3"
+    code_bg   = "#F0F0EE"
 
     parts = [
         f"<p>At x = <b>{_fmt(step.x_n)}</b>, "
@@ -153,8 +153,10 @@ def _normal_body(step: IterationRecord, idx: int) -> str:
         n1 = idx + 1
         formula_html = (
             f"<p style='font-family:Consolas,monospace; "
-            f"background:{code_bg}; padding:6px 10px; "
-            f"border-radius:3px; margin:2px 0;'>"
+            f"font-size:{style.SIZE_FORMULA}pt; "
+            f"background:{code_bg}; padding:8px 12px; "
+            f"border-radius:5px; margin:4px 0; "
+            f"border-left:3px solid {style.COLOR_ACCENT};'>"
             f"x<sub>{n1}</sub> = x<sub>{idx}</sub>"
             f" &minus; f(x<sub>{idx}</sub>) / f′(x<sub>{idx}</sub>)<br>"
             f"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {_fmt(step.x_n)}"

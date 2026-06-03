@@ -84,9 +84,10 @@ class TablePanel(QWidget):
         mono.setPointSize(style.SIZE_TABLE)
         self.table.setFont(mono)
 
-        sans = QFont()
-        sans.setPointSize(style.SIZE_TABLE)
-        self.table.horizontalHeader().setFont(sans)
+        header_font = QFont(style.FONT_UI)
+        header_font.setPointSize(style.SIZE_SMALL)
+        header_font.setWeight(QFont.Weight.DemiBold)
+        self.table.horizontalHeader().setFont(header_font)
 
         self.table.itemSelectionChanged.connect(self._on_selection_changed)
 

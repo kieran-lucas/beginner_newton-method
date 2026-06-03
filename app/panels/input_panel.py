@@ -57,8 +57,9 @@ class InputPanel(QWidget):
         lbl = QLabel(text)
         lbl.setStyleSheet(
             f"color: {style.COLOR_TEXT_SECONDARY}; "
+            f"font-family: '{style.FONT_UI}'; "
             f"font-size: {style.SIZE_SECTION_LABEL}pt; "
-            f"font-weight: 700; letter-spacing: 0.5px;"
+            f"font-weight: 700; letter-spacing: 1px;"
         )
         return lbl
 
@@ -93,11 +94,12 @@ class InputPanel(QWidget):
         lay.addWidget(self.fx_input)
 
         self.deriv_label = QLabel("f′(x) = —")
-        mono_sm = QFont("Consolas")
-        mono_sm.setStyleHint(QFont.StyleHint.TypeWriter)
-        mono_sm.setPointSize(style.SIZE_FORMULA)
-        self.deriv_label.setFont(mono_sm)
-        self.deriv_label.setStyleSheet(f"color: {style.COLOR_TEXT_SECONDARY};")
+        deriv_font = QFont(style.FONT_UI)
+        deriv_font.setPointSize(style.SIZE_FORMULA)
+        self.deriv_label.setFont(deriv_font)
+        self.deriv_label.setStyleSheet(
+            f"color: {style.COLOR_TEXT_SECONDARY}; font-style: italic;"
+        )
         lay.addWidget(self.deriv_label)
 
         self.parse_error_label = QLabel()
@@ -167,7 +169,10 @@ class InputPanel(QWidget):
 
         self.step_label = QLabel("Step — / —")
         self.step_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.step_label.setStyleSheet(f"color: {style.COLOR_TEXT_SECONDARY};")
+        self.step_label.setStyleSheet(
+            f"color: {style.COLOR_TEXT_SECONDARY}; "
+            f"font-family: '{style.FONT_UI}'; font-weight: 500;"
+        )
 
         self.btn_next = QPushButton("Next ►")
         self.btn_next.setEnabled(False)
@@ -231,7 +236,8 @@ class InputPanel(QWidget):
         row = QHBoxLayout()
         lbl = QLabel(label)
         lbl.setStyleSheet(
-            f"color: {style.COLOR_TEXT_SECONDARY}; font-size: {style.SIZE_SMALL}pt;"
+            f"color: {style.COLOR_TEXT_SECONDARY}; "
+            f"font-family: '{style.FONT_UI}'; font-size: {style.SIZE_SMALL}pt;"
         )
         lbl.setFixedWidth(114)
         field = QLineEdit()

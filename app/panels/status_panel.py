@@ -43,8 +43,9 @@ class StatusPanel(QWidget):
         section_lbl = QLabel("EXPLANATION")
         section_lbl.setStyleSheet(
             f"color: {style.COLOR_TEXT_SECONDARY}; "
+            f"font-family: '{style.FONT_UI}'; "
             f"font-size: {style.SIZE_SECTION_LABEL}pt; "
-            f"font-weight: 700; letter-spacing: 0.5px;"
+            f"font-weight: 700; letter-spacing: 1px;"
         )
         outer.addWidget(section_lbl)
 
@@ -74,7 +75,8 @@ class StatusPanel(QWidget):
         self._badge.setTextFormat(Qt.TextFormat.RichText)
         self._badge.setVisible(False)
         self._badge.setStyleSheet(
-            f"border-radius: 4px; padding: 8px 10px; font-size: {style.SIZE_BODY}pt;"
+            f"border-radius: 5px; padding: 10px 12px; "
+            f"font-family: '{style.FONT_UI}'; font-size: {style.SIZE_BODY}pt;"
         )
         outer.addWidget(self._badge)
 
@@ -104,7 +106,9 @@ class StatusPanel(QWidget):
         bg, fg = palette.get(kind, (style.COLOR_SURFACE, style.COLOR_TEXT_PRIMARY))
         self._badge.setStyleSheet(
             f"background-color: {bg}; color: {fg}; "
-            f"border-radius: 4px; padding: 8px 10px; "
+            f"border-radius: 5px; padding: 10px 12px; "
+            f"border-left: 3px solid {fg}; "
+            f"font-family: '{style.FONT_UI}'; "
             f"font-size: {style.SIZE_BODY}pt; font-weight: 600;"
         )
         self._badge.setText(text)
